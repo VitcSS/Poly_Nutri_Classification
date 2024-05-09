@@ -107,6 +107,7 @@ class Cleaner():
         cleaned_data = self.cleaned_data.copy()
         features = self.select_features(N)
         X_train,X_test,Y_train,Y_test = train_test_split(cleaned_data['X'][features],cleaned_data['Y'], test_size=0.3, random_state=0)
+        print(cleaned_data['X'][features].shape)
         models ={
             'lr_clf' : LogisticRegression(random_state=0),
             'rf_clf' : RandomForestClassifier(random_state=0),
