@@ -135,6 +135,7 @@ class Runner():
     
     def data_per_target(self):
         df = self.df_raw#[self.df_raw["ID_VOLUNT"] != 1]
+        print(df.columns.tolist())
         df = df.drop(columns=[
             # 'ID_PROJ',
             'INICIAIS'])
@@ -151,7 +152,7 @@ class Runner():
             'Dietetico',
             'Questionario'
             ]
-        cols = ['ID_PROJ', 'ID_VOLUNT', "ALTURA"]
+        cols = ['ID_PROJ', 'ID_VOLUNT', "ALTURA",'IDADE ']
         for sublist in self.smart_id:
             cols.append(sublist)
         for key in keys_t1:
@@ -163,6 +164,7 @@ class Runner():
         df : pd.DataFrame = df[cols]
         # print(df)
         # df = self.drop_empty(df)
+
         df.to_json("data/staged/full_treated_data.json")
     def fix_peso(self):
         mask = self.df_raw["PESO_T1"] != 999
